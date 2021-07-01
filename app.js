@@ -66,7 +66,7 @@ var map = L.map('mapid')
           .setView([-6.8928,107.8201], 8);
 
 //Create date_list
-var start = new Date(2021, 5, 7)
+var start = new Date(2021, 5, 13)
 var end = new Date(2021, 5, 14);
 
 function updateDate(){
