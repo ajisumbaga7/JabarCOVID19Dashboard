@@ -239,7 +239,7 @@ daerah_final = daerah2.sort(byScores);
 
 $.when(
   $.getJSON('jb-adm-2.geojson'),
-  $.getJSON('https://data.covid19.go.id/public/api/skor.json'),
+  $.get('https://data.covid19.go.id/public/api/skor.json'),
   $.getJSON("assets/sebaran"+"2021-06-06"+".txt")
   ).done(function (responseGeojson, responseSkor, responseData) {
     var data = responseSkor[0]
