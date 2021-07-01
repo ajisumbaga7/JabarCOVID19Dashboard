@@ -696,5 +696,5 @@ function Get(yourUrl){
     return Httpreq.responseText;          
 }
 
-var json_obj = JSON.parse(Get("http://cors.io/?https://data.covid19.go.id/public/api/skor.json"));
+var json_obj = JSON.parse(Get("https://data.covid19.go.id/public/api/skor.json"));
 console.log("this is the author name: "+json_obj);
