@@ -241,8 +241,8 @@ $.when(
   $.getJSON('https://potensi-risiko-penularan.digitalservice.id/assets/data/jb-adm-2.geojson'),
   $.getJSON('https://data.covid19.go.id/public/api/skor.json')
   ).done(function (responseGeojson, responseSkor) {
-    var data = responseSkor
-    var geojson = responseGeojson
+    var data = responseSkor[0]
+    var geojson = responseGeojson[0]
     console.log(data)
     for (var i = 0; i < data.data.length; i++){
         if(data.data[i].kode_prov == 32){
