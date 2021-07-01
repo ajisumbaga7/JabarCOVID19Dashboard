@@ -430,8 +430,6 @@ $.when(
         ]
     }
 
-    var clean = uniqByKeepLast(responseData[0].data.content, it => it.id);
-    // console.log(final)
     var confirm = Object.values(final).filter(function(item) {
         return item.status == "CONFIRMATION" && item.stage != "Meninggal" && item.stage != "Selesai"
     })
