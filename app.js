@@ -238,12 +238,12 @@ scores_final = scores2.sort(function(a, b){return a - b})
 daerah_final = daerah2.sort(byScores);
 
 $.when(
-  $.getJSON('jb-adm-2.geojson'),
+  $.getJSON('https://potensi-risiko-penularan.digitalservice.id/assets/data/jb-adm-2.geojson'),
   $.getJSON('https://data.covid19.go.id/public/api/skor.json'),
   $.getJSON("assets/sebaran"+"2021-06-06"+".txt")
   ).done(function (responseGeojson, responseSkor, responseData) {
-    var data = responseSkor[0]
-    var geojson = responseGeojson[0]
+    var data = JSON.parse(responseSkor)
+    var geojson = JSON.parse(responseGeojson)
     console.log(data)
     for (var i = 0; i < data.data.length; i++){
         if(data.data[i].kode_prov == 32){
