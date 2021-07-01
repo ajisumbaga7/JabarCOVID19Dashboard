@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <title>INFORMASI COVID-19 JAWA BARAT </title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+	<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.2/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body> 
+    <!-- Navbar Section -->
+    <div id="home"></div>
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="#home" id="navbar__logo">Pusat Informasi COVID-19 <br>Provinsi Jawa Barat</br></a>
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="#home" class="navbar__links" id="home-page">Beranda</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="#graph" class="navbar__links" id="graph-page">Grafik</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="#table" class="navbar__links" id="table-page">Tabel</a>
+                </li>
+                <li class="navbar__btn">
+                    <a href="#sign-up" class="button" id="signup">Lapor</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <!-- Hero Section -->
+    <div class="hero" id="">
+        <div class="hero__container">
+            <h1 class="hero__heading">Dashboard Sebaran Kasus COVID-19 di Jawa Barat</h1>
+            <p class="hero__description">Tanggal Update : <span id = "update__date"></span></p>
+            <!-- <button class="main__btn"><a href="#">Explore</a></button> -->
+        </div>
+    </div>
+    <div class="stat" id="statistic">
+        <div class="stat__container">
+            <div class="stat__confirm">
+                <div class="stat__confirm--total">
+                    <h2>Total Kasus Konfirmasi</h2>
+                    <h3 id=total__confirm>5000</h3>
+                </div>
+                <div class="stat__confirm--container">
+                    <div class="stat__confirm--box" >
+                        <h2>Konfirmasi <br>Aktif</h2>
+                        <h3 id=active__confirm>5000</h3>
+                    </div>
+                    <div class="stat__confirm--box">
+                        <h2>Konfirmasi <br>Sembuh</h2>
+                        <h3 id="completed__confirm">5000</h3>
+                    </div>
+                    <div class="stat__confirm--box">
+                        <h2>Konfirmasi <br>Meninggal</h2>
+                        <h3 id="died__confirm">5000</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="stat__nonconfirm">
+                <div class="stat__nonconfirm--container">
+                    <div class="stat__nonconfirm--title">
+                        <h2>Suspect <br>Dipantau</h2>
+                        <h3 id="active__suspect">5000</h3>
+                    </div>
+                    <div class="stat__nonconfirm--wrapper">
+                        <div class="stat__nonconfirm--box" id="warn">
+                            <h2>Suspect</h2>
+                            <h3 id="total__suspect">5000</h3>
+                        </div>
+                        <div class="stat__nonconfirm--box" id="health">
+                            <h2>Discarded</h2>
+                            <h3 id="dis__suspect">5000</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat__nonconfirm--container">
+                    <div class="stat__nonconfirm--title">
+                        <h2>Kontak Erat<br> Dipantau</h2>
+                        <h3 id="active__cc">5000</h3>
+                    </div>
+                    <div class="stat__nonconfirm--wrapper">
+                        <div class="stat__nonconfirm--box" id="warn">
+                            <h2>Kontak Erat</h2>
+                            <h3 id="total__cc">5000</h3>
+                        </div>
+                        <div class="stat__nonconfirm--box" id="health">
+                            <h2>Discarded</h2>
+                            <h3 id="dis__cc">5000</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat__nonconfirm--container">
+                    <div class="stat__nonconfirm--title">
+                        <h2>Probable <br>Dipantau</h2>
+                        <h3 id="active__prob">5000</h3>
+                    </div>
+                    <div class="stat__nonconfirm--wrapper">
+                        <div class="stat__nonconfirm--box" id="warn">
+                            <h2>Probable</h2>
+                            <h3 id="total__prob">5000</h3>
+                        </div>
+                        <div class="stat__nonconfirm--box" id="health">
+                            <h2>Discarded</h2>
+                            <h3 id="dis__prob">5000</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About Section -->
+    <!-- <div class="main" id="about">
+        <div class="main__container">
+            <div class="main__img--container">
+                <div class="main__img--card">ICON</div> -->
+                <!-- <div class="main__img--card"><i class="fas fa-layer-group"></i></div>
+            </div>
+            <div class="main__content">
+                <h1>What do we do?</h1>
+                <h2>We help business scale</h2>
+                <p>Schedule a call to learn more about our services</p>
+                <button class="main__btn"><a href="#">Schedule Call</a></button>
+            </div>
+        </div>
+    </div> -->
+    <!-- Services Section -->
+    <!-- <div class="services" id="services">
+        <h1>Our Services</h1>
+        <div class="services__wrapper">
+            <div class="services__card">
+                <h2>Custom Colorways</h2>
+                <p>AI Powered technology</p>
+                <div class="services__btn"><button>Get Started</button></div>
+            </div>
+            <div class="services__card">
+                <h2>Are you Ready?</h2>
+                <p>Take the leaps</p>
+                <div class="services__btn"><button>Get Started</button></div>
+            </div>
+            <div class="services__card">
+                <h2>Full Gradients</h2>
+                <p>100 Combinations</p>
+                <div class="services__btn"><button>Get Started</button></div>
+            </div>
+            <div class="services__card">
+                <h2>Infinite Choices</h2>
+                <p>1000's of colors</p>
+                <div class="services__btn"><button>Get Started</button></div>
+            </div>
+        </div>
+    </div> -->
+    <!-- Feature Section -->
+    <!-- <div class="main" id="sign-up">
+        <div class="main__container">
+            <div class="main__content">
+                <h1>Join Our Team</h1>
+                <h2>Sign Up Today</h2>
+                <p>See what makes us different</p>
+                <button class="main__btn"><a href="#">Sign Up</a></button>
+            </div>
+            <div class="main__img--container"> -->
+                <!-- <div class="main__img--card">ICON</div> -->
+                <!-- <div class="main__img--card" id="card-2"><i class="fas fa-users"></i></div>
+            </div>
+        </div>
+    </div> -->
+    <!-- Footer Section -->
+    <!-- <div class="footer__container">
+        <div class="footer__links">
+            <div class="footer__link--wrapper">
+                <div class="footer__link--items">
+                    <h2>About Us</h2>
+                    <a href="/sign__up">How it works</a> <a href="/">Testimonials</a>
+                    <a href="/">Careers</a> <a href="/">Terms of Service</a>
+                </div>
+                <div class="footer__link--items">
+                    <h2>Contact Us</h2>
+                    <a href="/">Contact</a> <a href="/">Support</a>
+                    <a href="/">Destinations</a>
+                </div>
+            </div>
+            <div class="footer__link--wrapper">
+                <div class="footer__link--items">
+                    <h2>Videos</h2>
+                    <a href="/">Submit Video</a> <a href="/">Ambassadors</a>
+                    <a href="/">Agency</a>
+                </div>
+                <div class="footer__link--items">
+                    <h2>Social Media</h2>
+                    <a href="/">Instagram</a> <a href="/">Facebook</a>
+                    <a href="/">Youtube</a> <a href="/">Twitter</a>
+                </div>
+            </div>
+        </div>
+        <section class="social__media">
+            <div class="social__media--wrap">
+                <div class="footer__logo">
+                    <a href="/" id="footer__logo">COLOR</a>
+                </div>
+                <p class="website__rights">© COLOR 2020. All rights reserved</p>
+                <div class="social__icons">
+                    <a href="/" class="social__icon--link" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="/" class="social__icon--link"><i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="/" class="social__icon--link"><i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="/" class="social__icon--link"><i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="/" class="social__icon--link"><i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div> -->
+
+    <!-- Graph Section -->
+    <div id="graph" style="height: 40px; background-color: #7c7c7c;"></div>
+    <div class="graph" id="">
+        <div class="graph__container">
+            <div class="map__container">
+                <h2 class="map__title">Peta Kasus COVID-19 di Jawa Barat</h2>
+                <div class="map__wrapper" id="mapid"></div>    
+            </div>
+            <div class="chart__container">
+                <h2 class="map__title">Rasio Kasus Terkonfirmasi Jawa Barat</h2>
+                <div id="myChart" class="chart__wrapper">
+                    <a class="zc-ref" href="https://www.zingchart.com">Powered by ZingChart</a>
+                </div>    
+            </div>
+        </div>
+    </div>
+
+    <!-- Table Section -->
+    <div id="table" style="height: 40px; background-color: #7c7c7c;"></div>
+    <div class="table" id="">
+        <div class="table__container">
+            <h1>Tabel Kasus COVID-19 Jawa Barat</h1>
+            <div id="table__chart" class="table__wrapper"></div>    
+        </div>
+    </div>
+    <div id="" style="height: 100px; background-color: #fff;"></div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
