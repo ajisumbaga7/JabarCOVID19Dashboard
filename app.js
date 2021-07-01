@@ -243,7 +243,7 @@ $.when(
   ).done(function (responseGeojson, responseSkor) {
     var data = responseSkor[0]
     var geojson = responseGeojson[0]
-    console.log(data)
+    console.log(data.data.length)
     for (var i = 0; i < data.data.length; i++){
         if(data.data[i].kode_prov == 32){
             var temp = []
