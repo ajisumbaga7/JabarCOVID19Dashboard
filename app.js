@@ -114,7 +114,7 @@ for(var i = 0; i<date_list.length; i++){
         type: "GET",
         url: "https://covid19-public.digitalservice.id/api/v1/sebaran_v2/jabar?tanggal_update="+date_list[i],
         success: function(data) {
-            var response = JSON.parse(data);
+            var response = data;
             var temp = response.data.content;
             result = uniqByKeepLast(temp, it => it.id);
         },
@@ -239,11 +239,10 @@ daerah_final = daerah2.sort(byScores);
 
 $.when(
   $.getJSON('https://potensi-risiko-penularan.digitalservice.id/assets/data/jb-adm-2.geojson'),
-  $.getJSON('https://data.covid19.go.id/public/api/skor.json'),
-  $.getJSON("assets/sebaran"+"2021-06-06"+".txt")
-  ).done(function (responseGeojson, responseSkor, responseData) {
-    var data = JSON.parse(responseSkor)
-    var geojson = JSON.parse(responseGeojson)
+  $.getJSON('https://data.covid19.go.id/public/api/skor.json')
+  ).done(function (responseGeojson, responseSkor) {
+    var data = responseSkor
+    var geojson = responseGeojson
     console.log(data)
     for (var i = 0; i < data.data.length; i++){
         if(data.data[i].kode_prov == 32){
