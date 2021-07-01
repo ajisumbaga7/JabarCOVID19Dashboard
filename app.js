@@ -239,7 +239,7 @@ daerah_final = daerah2.sort(byScores);
 
 $.when(
   $.getJSON('jb-adm-2.geojson'),
-  $.get('https://data.covid19.go.id/public/api/skor.json'),
+  $.getJSON('https://data.covid19.go.id/public/api/skor.json'),
   $.getJSON("assets/sebaran"+"2021-06-06"+".txt")
   ).done(function (responseGeojson, responseSkor, responseData) {
     var data = responseSkor[0]
@@ -687,3 +687,14 @@ zingchart.render({
   width: "100%"
 });
 });
+
+
+function Get(yourUrl){
+    var Httpreq = new XMLHttpRequest(); // a new request
+    Httpreq.open("GET",yourUrl,false);
+    Httpreq.send(null);
+    return Httpreq.responseText;          
+}
+
+var json_obj = JSON.parse(Get("https://data.covid19.go.id/public/api/skor.json"));
+console.log("this is the author name: "+json_obj);
