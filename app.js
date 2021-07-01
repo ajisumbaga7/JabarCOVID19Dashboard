@@ -112,7 +112,7 @@ for(var i = 0; i<date_list.length; i++){
     var result = []
     $.ajax({
         type: "GET",
-        url: "assets/sebaran"+date_list[i]+".txt",
+        url: "https://covid19-public.digitalservice.id/api/v1/sebaran_v2/jabar?tanggal_update="+date_list[i],
         success: function(data) {
             var response = JSON.parse(data);
             var temp = response.data.content;
@@ -689,12 +689,12 @@ zingchart.render({
 });
 
 
-function Get(yourUrl){
-    var Httpreq = new XMLHttpRequest(); // a new request
-    Httpreq.open("GET",yourUrl,false);
-    Httpreq.send(null);
-    return Httpreq.responseText;          
-}
+// function Get(yourUrl){
+//     var Httpreq = new XMLHttpRequest(); // a new request
+//     Httpreq.open("GET",yourUrl,false);
+//     Httpreq.send(null);
+//     return Httpreq.responseText;          
+// }
 
-var json_obj = JSON.parse(Get("https://data.covid19.go.id/public/api/skor.json"));
-console.log("this is the author name: "+json_obj);
+// var json_obj = JSON.parse(Get("https://data.covid19.go.id/public/api/skor.json"));
+// console.log("this is the author name: "+json_obj);
